@@ -25,7 +25,7 @@ export default function App() {
   }
 
   try {
-    const response = await fetch("https://optigo-registration2k26.vercel.app/", {
+    const response = await fetch("https://optigo-registration2k26.vercel.app/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
