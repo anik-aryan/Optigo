@@ -31,8 +31,9 @@ export default function App() {
       return () => clearTimeout(timer);
     }
   }, [phase, passedCount]);
+
   const codeTemplates = {
-  cpp: `#include <bits/stdc++.h>
+    cpp: `#include <bits/stdc++.h>
 using namespace std;
 
 int main() {
@@ -43,7 +44,7 @@ int main() {
     cout << "Correct Answer";
     return 0;
 }`,
-  python: `def main():
+    python: `def main():
     name = "${name || "..."}"
     email = "${email || "..."}"
     handle = "${handle || "..."}"
@@ -52,7 +53,7 @@ int main() {
 
 if __name__ == "__main__":
     main()`,
-  java: `public class Main {
+    java: `public class Main {
     public static void main(String[] args) {
         String name = "${name || "..."}";
         String email = "${email || "..."}";
@@ -61,7 +62,7 @@ if __name__ == "__main__":
         System.out.println("Correct Answer");
     }
 }`,
-  js: `function main() {
+    js: `function main() {
   const name = "${name || "..."}";
   const email = "${email || "..."}";
   const handle = "${handle || "..."}";
@@ -70,131 +71,124 @@ if __name__ == "__main__":
 }
 
 main();`
-};
+  };
 
   return (
-    <>
+    <div className="app-wrapper">
       <div className="topbar">
-  <div className="top-left">
-    <span className="difficulty">Difficulty: 1500</span>
-  </div>
+        <div className="top-left">
+          <span className="difficulty">Difficulty: 1500</span>
+        </div>
 
-  <div className="top-tabs">
-  <button
-    className={`tab ${activeTab === "statement" ? "active" : ""}`}
-    onClick={() => setActiveTab("statement")}
-  >
-    Statement
-  </button>
+        <div className="top-tabs">
+          <button
+            className={`tab ${activeTab === "statement" ? "active" : ""}`}
+            onClick={() => setActiveTab("statement")}
+          >
+            Statement
+          </button>
 
-  <button
-    className={`tab ${activeTab === "submissions" ? "active" : ""}`}
-    onClick={() => setActiveTab("submissions")}
-  >
-    Submissions
-  </button>
+          <button
+            className={`tab ${activeTab === "submissions" ? "active" : ""}`}
+            onClick={() => setActiveTab("submissions")}
+          >
+            Submissions
+          </button>
 
-  <button
-    className={`tab ${activeTab === "result" ? "active" : ""}`}
-    onClick={() => setActiveTab("result")}
-  >
-    Result
-  </button>
+          <button
+            className={`tab ${activeTab === "result" ? "active" : ""}`}
+            onClick={() => setActiveTab("result")}
+          >
+            Result
+          </button>
 
-  <button
-    className={`tab ${activeTab === "help" ? "active" : ""}`}
-    onClick={() => setActiveTab("help")}
-  >
-    Help
-  </button>
-</div>
+          <button
+            className={`tab ${activeTab === "help" ? "active" : ""}`}
+            onClick={() => setActiveTab("help")}
+          >
+            Help
+          </button>
+        </div>
 
+        <div className="top-right">
+          <select
+            className="language-select"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            <option value="cpp">C++</option>
+            <option value="python">Python</option>
+            <option value="java">Java</option>
+            <option value="js">JavaScript</option>
+          </select>
 
-  <div className="top-right">
-    <select
-  className="language-select"
-  value={language}
-  onChange={(e) => setLanguage(e.target.value)}
->
-  <option value="cpp">C++</option>
-  <option value="python">Python</option>
-  <option value="java">Java</option>
-  <option value="js">JavaScript</option>
-</select>
-
-
-    <button className="theme-toggle">☀️</button>
-  </div>
-</div>
+          <button className="theme-toggle">☀️</button>
+        </div>
+      </div>
 
       <div className="container">
         {/* FORM */}
         <div className="form-section">
-  {activeTab === "statement" && (
-  <div className="statement">
-    <h2>OPTIGO CP REGISTRATION</h2>
+          {activeTab === "statement" && (
+            <div className="statement">
+              <h2>OPTIGO CP REGISTRATION</h2>
 
-    <p>
-      You are required to register for the Optigo Competitive Programming
-      contest. Fill in the details below carefully.
-    </p>
+              <p>
+                You are required to register for the Optigo Competitive Programming
+                contest. Fill in the details below carefully.
+              </p>
 
-    <h3>Registration Details</h3>
+              <h3>Registration Details</h3>
 
-    <div className="statement-form">
-      <label>Full Name</label>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Enter your full name"
-      />
+              <div className="statement-form">
+                <label>Full Name</label>
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Enter your full name"
+                />
 
-      <label>Email</label>
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Enter your email"
-      />
+                <label>Email</label>
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
+                />
 
-      <label>Platform Handle</label>
-      <input
-        value={handle}
-        onChange={(e) => setHandle(e.target.value)}
-        placeholder="Your CodeChef / Codeforces handle"
-      />
+                <label>Platform Handle</label>
+                <input
+                  value={handle}
+                  onChange={(e) => setHandle(e.target.value)}
+                  placeholder="Your CodeChef / Codeforces handle"
+                />
 
-      <button onClick={handleRegister}>Register</button>
-    </div>
+                <button onClick={handleRegister}>Register</button>
+              </div>
 
-    <h3>Notes</h3>
-    <ul>
-      <li>Multiple registrations are not allowed.</li>
-      <li>Make sure your handle is correct.</li>
-      <li>Language can be changed from the editor.</li>
-    </ul>
-  </div>
-)}
-
-</div>
-
+              <h3>Notes</h3>
+              <ul>
+                <li>Multiple registrations are not allowed.</li>
+                <li>Make sure your handle is correct.</li>
+                <li>Language can be changed from the editor.</li>
+              </ul>
+            </div>
+          )}
+        </div>
 
         {/* CODE */}
         <div className="code-section">
           <div className="editor-header">
-  <span className="file-name">
-    {language === "cpp" && "Main.cpp"}
-    {language === "python" && "main.py"}
-    {language === "java" && "Main.java"}
-    {language === "js" && "main.js"}
-  </span>
-</div>
-
+            <span className="file-name">
+              {language === "cpp" && "Main.cpp"}
+              {language === "python" && "main.py"}
+              {language === "java" && "Main.java"}
+              {language === "js" && "main.js"}
+            </span>
+          </div>
 
           <div className="code-area">
-  <pre>{codeTemplates[language]}</pre>
-
-</div>
-
+            <pre>{codeTemplates[language]}</pre>
+          </div>
         </div>
       </div>
 
@@ -225,14 +219,12 @@ main();`
                     </tr>
                   </thead>
                   <tbody>
-                    {[0,1,2,3,4].map((i) => (
+                    {[0, 1, 2, 3, 4].map((i) => (
                       <tr key={i} className={i < passedCount ? "passed" : ""}>
                         <td>1</td>
                         <td>{i}</td>
                         <td>
-                          {i < passedCount
-                            ? "Correct (0.00)"
-                            : "Running..."}
+                          {i < passedCount ? "Correct (0.00)" : "Running..."}
                         </td>
                       </tr>
                     ))}
@@ -254,6 +246,6 @@ main();`
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
