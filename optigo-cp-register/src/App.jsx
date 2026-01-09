@@ -4,7 +4,10 @@ import "./App.css";
 export default function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [handle, setHandle] = useState("");
+  
+  const [college, setCollege] = useState("");
+  const [branch, setBranch] = useState("");
+  const [phone, setPhone] = useState("");
 
   const [showResult, setShowResult] = useState(false);
   const [phase, setPhase] = useState("idle");
@@ -14,14 +17,50 @@ export default function App() {
 
   const totalTests = 5;
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
+  // basic frontend validation
+  if (!college || !name || !branch || !phone || !email) {
+    alert("All fields are required");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        college,
+        name,
+        branch,
+        phone,
+        email,
+      }),
+    });
+
+    const data = await response.json();
+
+    
+    if (!response.ok) {
+      alert(data.error || "Registration failed");
+      return;
+    }
+
+   
     setShowResult(true);
     setPhase("compiling");
     setPassedCount(0);
 
     setTimeout(() => setPhase("testing"), 1200);
     setTimeout(() => setPhase("results"), 2500);
-  };
+
+  } catch (err) {
+    alert("Server not reachable");
+    console.error(err);
+  }
+};
+
 
   useEffect(() => {
     if (phase === "results" && passedCount < totalTests) {
@@ -39,7 +78,7 @@ using namespace std;
 int main() {
     string name = "${name || "..."}";
     string email = "${email || "..."}";
-    string handle = "${handle || "..."}";
+    
 
     cout << "Correct Answer";
     return 0;
@@ -47,7 +86,7 @@ int main() {
     python: `def main():
     name = "${name || "..."}"
     email = "${email || "..."}"
-    handle = "${handle || "..."}"
+    
 
     print("Correct Answer")
 
@@ -57,7 +96,7 @@ if __name__ == "__main__":
     public static void main(String[] args) {
         String name = "${name || "..."}";
         String email = "${email || "..."}";
-        String handle = "${handle || "..."}";
+        
 
         System.out.println("Correct Answer");
     }
@@ -65,7 +104,7 @@ if __name__ == "__main__":
     js: `function main() {
   const name = "${name || "..."}";
   const email = "${email || "..."}";
-  const handle = "${handle || "..."}";
+  
 
   console.log("Correct Answer");
 }
@@ -154,13 +193,28 @@ main();`
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                 />
-
-                <label>Platform Handle</label>
+                <label>College</label>
                 <input
-                  value={handle}
-                  onChange={(e) => setHandle(e.target.value)}
-                  placeholder="Your CodeChef / Codeforces handle"
+                  value={college}
+                  onChange={(e) => setCollege(e.target.value)}
+                  placeholder="Enter your college name"
                 />
+
+                <label>Branch</label>
+                <input
+                  value={branch}
+                  onChange={(e) => setBranch(e.target.value)}
+                  placeholder="CSE / IT / ECE"
+                />
+
+                <label>Phone Number</label>
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  placeholder="10 digit mobile number"
+                />
+
+                
 
                 <button onClick={handleRegister}>Register</button>
               </div>
