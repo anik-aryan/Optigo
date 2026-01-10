@@ -16,11 +16,23 @@ export default function App() {
   const [language, setLanguage] = useState("cpp");
 
   const totalTests = 5;
-
+  const isValidEmail = (email) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
   const handleRegister = async () => {
   // basic frontend validation
   if (!college || !name || !branch || !phone || !email) {
     alert("All fields are required");
+    return;
+  }
+
+  if (!isValidEmail(email)) {
+    alert("Please enter a valid email address");
+    return;
+  }
+
+  if (phone.length !== 10) {
+    alert("Phone number must be exactly 10 digits");
     return;
   }
 
@@ -78,7 +90,9 @@ using namespace std;
 int main() {
     string name = "${name || "..."}";
     string email = "${email || "..."}";
-    
+    string college = "${college || "..."}";
+    string branch = "${branch || "..."}";
+    int phone = "${phone || "..."}";
 
     cout << "Correct Answer";
     return 0;
@@ -86,7 +100,9 @@ int main() {
     python: `def main():
     name = "${name || "..."}"
     email = "${email || "..."}"
-    
+    college = "${college || "..."}"
+    branch = "${branch || "..."}"
+    phone = "${phone || "..."}"
 
     print("Correct Answer")
 
@@ -96,7 +112,9 @@ if __name__ == "__main__":
     public static void main(String[] args) {
         String name = "${name || "..."}";
         String email = "${email || "..."}";
-        
+        String college = "${college || "..."}";
+        String branch = "${branch || "..."}";
+        int phone = "${phone || "..."}";
 
         System.out.println("Correct Answer");
     }
@@ -104,8 +122,10 @@ if __name__ == "__main__":
     js: `function main() {
   const name = "${name || "..."}";
   const email = "${email || "..."}";
+  const college = "${college|| "..."}";
+  const branch = "${branch|| "..."}";
+  const phone = "${phone|| "..."}";
   
-
   console.log("Correct Answer");
 }
 
@@ -116,7 +136,7 @@ main();`
     <div className="app-wrapper">
       <div className="topbar">
         <div className="top-left">
-          <span className="difficulty">Difficulty: 1500</span>
+          <span className="difficulty">Submissions: 1500</span>
         </div>
 
         <div className="top-tabs">
@@ -189,10 +209,12 @@ main();`
 
                 <label>Email</label>
                 <input
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                 />
+
                 <label>College</label>
                 <input
                   value={college}
@@ -209,8 +231,14 @@ main();`
 
                 <label>Phone Number</label>
                 <input
+                  type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, "");
+                    if (value.length <= 10) {
+                      setPhone(value);
+                    }
+                  }}
                   placeholder="10 digit mobile number"
                 />
 
@@ -222,7 +250,7 @@ main();`
               <h3>Notes</h3>
               <ul>
                 <li>Multiple registrations are not allowed.</li>
-                <li>Make sure your handle is correct.</li>
+                <li>Make sure your details correct.</li>
                 <li>Language can be changed from the editor.</li>
               </ul>
             </div>
