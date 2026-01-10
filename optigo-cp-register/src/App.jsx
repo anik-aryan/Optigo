@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import "./App.css";
 
 export default function App() {
+  const [theme, setTheme] = useState("dark"); 
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   
@@ -14,6 +16,9 @@ export default function App() {
   const [passedCount, setPassedCount] = useState(0);
   const [activeTab, setActiveTab] = useState("statement");
   const [language, setLanguage] = useState("cpp");
+  useEffect(() => {
+    document.body.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const totalTests = 5;
   const isValidEmail = (email) => {
@@ -181,7 +186,15 @@ main();`
             <option value="js">JavaScript</option>
           </select>
 
-          <button className="theme-toggle">☀️</button>
+          <button
+            className="theme-toggle"
+            onClick={() =>
+              setTheme((prev) => (prev === "dark" ? "light" : "dark"))
+            }
+          >
+            {theme === "dark" ? "🌙" : "☀️"}
+          </button>
+
         </div>
       </div>
 

@@ -1,3 +1,55 @@
+/* =======================
+   THEME VARIABLES
+   ======================= */
+
+/* DEFAULT = DARK MODE */
+:root {
+  --bg-main: #181a1b;
+  --bg-secondary: #1f2223;
+  --bg-tertiary: #2b2b2b;
+
+  --border-color: #2e2e2e;
+  --border-light: #333;
+
+  --text-main: #e0e0e0;
+  --text-muted: #b0bec5;
+  --text-soft: #cfd8dc;
+
+  --accent-green: #4caf50;
+  --accent-green-dark: #2e7d32;
+  --accent-green-hover: #388e3c;
+
+  --warning: #ffcc80;
+  --success-bg: #1b3a1b;
+  --success-text: #9ad29a;
+
+  --editor-line: #555;
+}
+
+/* LIGHT MODE */
+[data-theme="light"] {
+  --bg-main: #f5f7fa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #eef1f5;
+
+  --border-color: #d0d7de;
+  --border-light: #cbd5e1;
+
+  --text-main: #1f2933;
+  --text-muted: #475569;
+  --text-soft: #334155;
+
+  --accent-green: #16a34a;
+  --accent-green-dark: #15803d;
+  --accent-green-hover: #166534;
+
+  --warning: #b45309;
+  --success-bg: #dcfce7;
+  --success-text: #166534;
+
+  --editor-line: #94a3b8;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -6,8 +58,8 @@
 }
 
 body {
-  background: #181a1b;
-  color: #e0e0e0;
+  background: var(--bg-main);
+  color: var(--text-main);
   overflow: hidden;
 }
 
@@ -21,8 +73,8 @@ body {
 /* TOP BAR */
 .topbar {
   height: 52px;
-  background: #1f2223;
-  border-bottom: 1px solid #2e2e2e;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   align-items: center;
   padding: 0 14px;
@@ -44,7 +96,7 @@ body {
 .tab {
   background: transparent;
   border: none;
-  color: #b0bec5;
+  color: var(--text-muted);
   font-size: 14px;
   padding: 6px 10px;
   cursor: pointer;
@@ -56,8 +108,8 @@ body {
 }
 
 .tab.active {
-  color: #ffffff;
-  border-bottom: 2px solid #4caf50;
+  color: var(--text-main);
+  border-bottom: 2px solid var(--accent-green);
 }
 
 /* RIGHT */
@@ -68,9 +120,9 @@ body {
 }
 
 .language-select {
-  background: #181a1b;
-  color: #e0e0e0;
-  border: 1px solid #333;
+  background: var(--bg-main);
+  color: var(--text-main);
+  border: 1px solid var(--border-light);
   padding: 4px 6px;
   font-size: 13px;
   cursor: pointer;
@@ -98,8 +150,8 @@ body {
   width: 40%;
   min-width: 320px;
   padding: 20px 28px;
-  background: #1f2223;
-  border-right: 1px solid #2e2e2e;
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -143,9 +195,9 @@ body {
 .statement-form input {
   width: 100%;
   padding: 8px;
-  background: #181a1b;
-  border: 1px solid #333;
-  color: #e0e0e0;
+  background: var(--bg-main);
+  border: 1px solid var(--border-light);
+  color: var(--text-main);
   border-radius: 3px;
 }
 
@@ -157,7 +209,7 @@ body {
 .statement-form button {
   margin-top: 14px;
   padding: 8px 14px;
-  background: #2e7d32;
+  background: var(--accent-green-dark);
   border: none;
   color: white;
   cursor: pointer;
@@ -167,7 +219,7 @@ body {
 }
 
 .statement-form button:hover {
-  background: #388e3c;
+  background: var(--accent-green-hover);
 }
 
 /* CODE SECTION */
@@ -175,17 +227,17 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: #181a1b;
+  background: var(--bg-main);
   overflow: hidden;
   min-width: 0;
 }
 
 .editor-header {
-  background: #2b2b2b;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-soft);
   padding: 8px 14px;
   font-size: 13px;
-  border-bottom: 1px solid #333;
-  color: #cfd8dc;
   flex-shrink: 0;
 }
 
@@ -198,14 +250,14 @@ body {
   flex: 1;
   overflow-y: auto;
   overflow-x: auto;
-  background: #181a1b;
+  background: var(--bg-main);
   padding: 18px 16px 18px 48px;
 }
 
 pre {
   font-size: 14px;
   line-height: 1.55;
-  color: #e0e0e0;
+  color: var(--text-main);
   white-space: pre;
   margin: 0;
 }
@@ -216,7 +268,7 @@ pre {
   position: absolute;
   left: 6px;
   top: 18px;
-  color: #555;
+  color: var(--editor-line);
   text-align: right;
   user-select: none;
   font-size: 14px;
@@ -237,8 +289,8 @@ pre {
 .result-card {
   width: 90%;
   max-width: 700px;
-  background: #1f2223;
-  border: 1px solid #333;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-light);
   border-radius: 4px;
   max-height: 90vh;
   overflow-y: auto;
@@ -284,8 +336,8 @@ tbody tr {
 }
 
 .passed {
-  background: #1b3a1b;
-  color: #9ad29a;
+  background: var(--success-bg);
+  color: var(--success-text);
 }
 
 .footer {
