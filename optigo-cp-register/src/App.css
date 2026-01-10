@@ -350,6 +350,29 @@ tbody tr {
   color: #c8e6c9;
 }
 
+.help {
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.help h2 {
+  margin-bottom: 10px;
+}
+
+.help h3 {
+  margin-top: 18px;
+  color: var(--accent, #4caf50);
+}
+
+.help ul {
+  margin-left: 18px;
+}
+
+.help li {
+  margin-bottom: 6px;
+}
+
+
 /* TABLET */
 @media (max-width: 1024px) {
   .form-section {

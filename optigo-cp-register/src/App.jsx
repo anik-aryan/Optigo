@@ -99,7 +99,7 @@ int main() {
     string branch = "${branch || "..."}";
     int phone = "${phone || "..."}";
 
-    cout << "Correct Answer";
+    cout << "Registered";
     return 0;
 }`,
     python: `def main():
@@ -109,7 +109,7 @@ int main() {
     branch = "${branch || "..."}"
     phone = "${phone || "..."}"
 
-    print("Correct Answer")
+    print("Registered")
 
 if __name__ == "__main__":
     main()`,
@@ -121,7 +121,7 @@ if __name__ == "__main__":
         String branch = "${branch || "..."}";
         int phone = "${phone || "..."}";
 
-        System.out.println("Correct Answer");
+        System.out.println("Registered");
     }
 }`,
     js: `function main() {
@@ -131,7 +131,7 @@ if __name__ == "__main__":
   const branch = "${branch|| "..."}";
   const phone = "${phone|| "..."}";
   
-  console.log("Correct Answer");
+  console.log("Registered");
 }
 
 main();`
@@ -152,7 +152,7 @@ main();`
             Statement
           </button>
 
-          <button
+          {/* <button
             className={`tab ${activeTab === "submissions" ? "active" : ""}`}
             onClick={() => setActiveTab("submissions")}
           >
@@ -164,7 +164,7 @@ main();`
             onClick={() => setActiveTab("result")}
           >
             Result
-          </button>
+          </button> */}
 
           <button
             className={`tab ${activeTab === "help" ? "active" : ""}`}
@@ -268,6 +268,56 @@ main();`
               </ul>
             </div>
           )}
+          {activeTab === "help" && (
+            <div className="help">
+              <h2>Help & Guidelines</h2>
+
+              <h3>📞 Contact</h3>
+              <ul>
+                <li>
+                  <b>Coordinator:</b> +91 93361-83644
+                </li>
+                <li>
+                  <b>Co-coordinator:</b> +91 82870-11594
+                </li>
+                <li>
+                  <b>Development Lead:</b> +91 63976-43305
+                </li>
+              </ul>
+
+              <h3>📌 Registration Issues</h3>
+              <ul>
+                <li>All fields are mandatory.</li>
+                <li>Use a valid email ID (example: name@gmail.com).</li>
+                <li>Phone number must be exactly 10 digits.</li>
+                <li>Multiple registrations using same email are not allowed.</li>
+              </ul>
+
+              <h3>💻 Editor & Language</h3>
+              <ul>
+                <li>You can switch languages from the top-right dropdown.</li>
+                <li>Changing language does NOT affect your registration.</li>
+                <li>Displayed code is for preview only.</li>
+              </ul>
+
+              <h3>⚙ Submission Process</h3>
+              <ul>
+                <li>After clicking Register, your submission is compiled.</li>
+                <li>Test cases run one by one like a real CP platform.</li>
+                <li>Green result means your registration is successful.</li>
+              </ul>
+
+              <h3>❓ Common Errors</h3>
+              <ul>
+                <li><b>Server not reachable:</b> Try again after some time.</li>
+                <li><b>Registration failed:</b> Check details and retry.</li>
+                <li><b>Stuck on compiling:</b> Refresh and re-submit.</li>
+              </ul>
+
+              
+            </div>
+          )}
+
         </div>
 
         {/* CODE */}
